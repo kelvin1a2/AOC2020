@@ -1,27 +1,18 @@
 #!/usr/bin/python
-import math
 
 def getForm():
     # Using readlines() 
-    Forms = open("input.txt", 'r').readlines() 
+    f = open('Day6\input.txt', 'r')
+    Forms = [x.strip() for x in f.readlines()]
     l_forms = list()
     answer = list()
-    i = 0
-    # form_vars = ''
-    # Strips the newline character 
     for form in Forms:
-        if len(Forms)-1 == i:
-            answer.append(form[:-1])
-            l_forms.append(Form(answer))
-            break
-        if form == "\n":
-            # print(f"form_vars: {form_vars}")
+        if form != '':
+            answer.append(form)
+        else:
             l_forms.append(Form(answer))
             answer = list()
-        else:
-            answer.append(form[:-1])
-            # form_vars +=  form[:-1]
-        i += 1
+    l_forms.append(Form(answer))
     return l_forms
 
 class Form():
@@ -50,7 +41,6 @@ class Form():
                     self.yes += char
                 else:
                     self.duplicates += char
-                # print(char)
 
 
 if __name__ == "__main__":
