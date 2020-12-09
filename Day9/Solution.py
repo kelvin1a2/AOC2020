@@ -2,9 +2,7 @@
 import re
 
 def getNumbers():
-    # Using readlines() 
-    f = open('Day9\input.txt', 'r')
-    return [int(x.strip()) for x in f.readlines()]
+    return [int(x) for x in open('Day9/input.txt').read().splitlines()]
 
 def calcValidNumber(number, index, preamble, l_numbers):
     # print(number)

@@ -1,4 +1,8 @@
 #!/usr/bin/python
+import re
+
+
+# l = [int(x) for x in open('data/9.txt').read().splitlines()]
 
 def getNumbers():
     return [int(x) for x in open('Day9/input.txt').read().splitlines()]
