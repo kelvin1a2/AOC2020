@@ -37,6 +37,7 @@ def checkList(l_joltes, count, lastItem):
                     pass
                 else:
                     pass
+    #grep a coffee or two xd 
     print(f"count {count}")
     return count 
 
