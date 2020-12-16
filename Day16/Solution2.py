@@ -52,13 +52,10 @@ def removeInvalidTickets(l_nearbyTickets, l_rules_numbers):
 
 def findPosition(nearbyTicket, l_rules_numbers, possibleFields):
     for indexTicket, number in enumerate(nearbyTicket): 
-        # for index, number in enumerate(l_nearbyTickets):
-        # print(f"test: {test}")
         for indexRules, x in enumerate(list(map(list, l_rules_numbers.values()))):
             if possibleFields[indexTicket][indexRules] == 0:
                 continue 
             elif number not in x:
-                # print(f"number:{number} x:{x} index:{index}")
                 possibleFields[indexTicket][indexRules] = 0
     return possibleFields
 
@@ -66,52 +63,30 @@ if __name__ == "__main__":
     l_rules_numbers = getRules()
     l_nearbyTickets = getNearbyTickets()
     l_nearbyTickets = removeInvalidTickets(deepcopy(l_nearbyTickets), l_rules_numbers)
-    # print(l_rules_numbers)
-    # print(l_nearbyTickets)
-    # voor 1 uit te rekenen: 
     your_ticket = [67,107,59,79,53,131,61,101,71,73,137,109,157,113,173,103,83,167,149,163]
     a_list = [1] * len(your_ticket)
     possibleFields = {i: deepcopy(a_list) for i in range(len(your_ticket))}
     for i in range(0,len(l_nearbyTickets)):
         possibleFields = findPosition(deepcopy(l_nearbyTickets[i]), l_rules_numbers, possibleFields)
-    print(f"possibleFields {possibleFields}")
-    tmppp =list()
-    for x in possibleFields.values():
-        tmppp.append(sum(x))
-    tmppp.sort()
-    print(tmppp)
-
-    # possibleFields[0] = [1,1,0]
-    # possibleFields[1] = [0,1,0]
-    # print(f"possibleFields {possibleFields}")
     for x in l_rules_numbers.keys():
          l_rules_numbers[x] = 0
-    # tmp = list()
-    # # for x in tmp:
-        
-    # currentsum = 1
     ij = 0 
     while ij < len(possibleFields.values()):
         for index, x in enumerate(possibleFields.values()):
             for index2, y in enumerate(x):
                 if sum(x) == 1 and y ==1:
-                # print('asdfsd')
-                    # print(x)
                     ij +=1
                     l_rules_numbers[list(l_rules_numbers)[index2]] = index
                     for idk, idk2 in enumerate(possibleFields.values()):
                         if idk2[index2] == 1:
                             idk2[index2] -= 1
                     break
-                # print('asdfsd')
     tmpPost = list()
     for x in l_rules_numbers.keys():
         if x.startswith('departure'): 
-            print(f"key: {x}, l_rules_numbers[key]:{l_rules_numbers[x]}")
             tmpPost.append(l_rules_numbers[x])
     answer = 1
     for row in tmpPost:
-        print(f"row: {row} and your_ticket[row] {your_ticket[row]}")
         answer *= your_ticket[row]
     print(answer)
 
